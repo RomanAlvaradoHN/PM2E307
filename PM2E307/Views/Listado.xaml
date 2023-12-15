@@ -10,29 +10,39 @@
         <controladores:MyUtilities x:Key="toStreamImageSource"/>
     </ContentPage.Resources>
 
-    <CollectionView x:Name="viewListado" SelectionMode="Single" BackgroundColor="White" SelectionChanged="ItemSelected">
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Vertical" ItemSpacing="1"/>
-        </CollectionView.ItemsLayout>
-
-        <CollectionView.ItemTemplate>
+    <ListView x:Name="viewListado" SelectionMode="Single" ItemSelected="OnItemSelected" RowHeight="80" BackgroundColor="white">
+        <ListView.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                <ViewCell>
+                    <Grid Padding="10">
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Text="{Binding Id_nota}" Grid.Column="0" Grid.RowSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="50"/>
-                    <Label Text="{Binding Descripcion}" Grid.Row="0" Grid.Column="1" VerticalOptions="StartAndExpand" Padding="5"/>
-                    <Label Text="{Binding Fecha}" Grid.Row="1" Grid.Column="1" VerticalOptions="StartAndExpand" FontSize="Small"/>
-                </Grid>
+                        <Label Grid.Column="0"
+                               Text="{Binding Id_nota}"
+                               FontAttributes="Bold"
+                               FontSize="50"
+                               TextColor="BlueViolet"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+                        
+                        
+                        <Label Grid.Column="1"
+                                Text="{Binding Fecha}"
+                               TextColor="BlueViolet"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </ViewCell>
             </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+        </ListView.ItemTemplate>
+    </ListView>
+    
+    
 </ContentPage>

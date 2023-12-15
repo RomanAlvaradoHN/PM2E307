@@ -13,20 +13,24 @@ public partial class Listado : ContentPage
 
     public Listado() { 
 		InitializeComponent();
-	}
-
+        
+    }
 
 
     protected override async void OnAppearing() {
         base.OnAppearing();
-		viewListado.ItemsSource = await App.db.SelectAll();
+        viewListado.Header = "Cargando...";
+        viewListado.ItemsSource = await App.db.SelectAll();
+        viewListado.Header = string.Empty;
     }
 
 
 
 
-    private async void ItemSelected(object sender, SelectionChangedEventArgs e) {
-        Notas nota = e.CurrentSelection as Notas;
+
+
+    private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args) {
+        Notas nota = args.SelectedItem as Notas;
         await Navigation.PushAsync(new Detalle(nota));
     }
 

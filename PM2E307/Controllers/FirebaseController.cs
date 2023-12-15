@@ -81,8 +81,8 @@ namespace PM2E307.Controllers {
 
 
         //DELETE =====================================================================
-        public async void Delete<T>(int id, T data) {
-            await client.Child(typeof(T).Name).Child(id.ToString()).DeleteAsync();
+        public async void Delete(int id) {
+            await client.Child("Notas").Child(id.ToString()).DeleteAsync();
         }
 
 

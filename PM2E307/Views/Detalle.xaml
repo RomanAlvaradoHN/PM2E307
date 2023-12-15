@@ -7,7 +7,7 @@
 
     <StackLayout Spacing="15" Padding="25">
 
-        <Label Text="{Binding Descripcion}" HeightRequest="200" BackgroundColor="white"/>
+        <Label x:Name="lblDescripcion" Text="{Binding Descripcion}" HeightRequest="200" BackgroundColor="white"/>
         
 
         <Button ImageSource="picture_ico.png"
@@ -15,17 +15,18 @@
 
 
         <Button ImageSource="play_ico.png"
-                Clicked="OnBtnPictureClicked"/>
+                x:Name="btnPlay"
+                Clicked="OnBtnPlayClicked"/>
 
 
         <Button ImageSource="edit_ico.png"
-                Clicked="OnBtnPictureClicked"/>
+                Clicked="OnBtnEditClicked"/>
 
 
         <Button ImageSource="delete_ico.png"
                 BackgroundColor="Red"
                 VerticalOptions="EndAndExpand"
-                Clicked="OnBtnPictureClicked"/>
+                Clicked="OnBtnDeleteClicked"/>
 
 
     </StackLayout>
