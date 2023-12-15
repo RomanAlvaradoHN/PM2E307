@@ -20,7 +20,7 @@ namespace PM2E307.Models {
             this.Descripcion = descripcion;
             this.Photo_record = foto;
             this.Audio_record = audio;
-            this.Fecha = DateTime.Today;
+            this.Fecha = DateTime.Now;
         }
 
 

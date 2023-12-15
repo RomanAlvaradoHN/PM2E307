@@ -49,11 +49,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\delete_ico.svg" />
+	  <None Remove="Resources\Images\details_ico.svg" />
 	  <None Remove="Resources\Images\done_ico.svg" />
+	  <None Remove="Resources\Images\edit_ico.svg" />
 	  <None Remove="Resources\Images\guardar_ico.svg" />
 	  <None Remove="Resources\Images\lista_ico.svg" />
 	  <None Remove="Resources\Images\microphone_ico.svg" />
 	  <None Remove="Resources\Images\photo_ico.svg" />
+	  <None Remove="Resources\Images\picture_ico.svg" />
 	  <None Remove="Resources\Images\play_ico.svg" />
 	  <None Remove="Resources\Images\restart_ico.svg" />
 	  <None Remove="Resources\Images\stop_ico.svg" />
@@ -67,7 +71,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\" />
+	  <MauiXaml Update="Views\Detalle.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Listado.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

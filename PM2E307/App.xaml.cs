@@ -10,5 +10,6 @@ namespace PM2E307 {
 
             MainPage = new AppShell();
         }
+
     }
 }

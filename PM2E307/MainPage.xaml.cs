@@ -1,4 +1,5 @@
 ﻿using PM2E307.Models;
+using PM2E307.Views;
 using Plugin.Maui.Audio;
 
 namespace PM2E307 {
@@ -94,7 +95,7 @@ namespace PM2E307 {
         private async void OnBtnGuardarClicked(object sender, EventArgs e) {
             try {
                 Notas nota = new Notas(
-                    await App.db.NewId(new Notas()),
+                    await App.db.NewId(),
                     txtDescripcion.Text,
                     fotoArray,
                     audioArray
@@ -126,7 +127,8 @@ namespace PM2E307 {
 
 
 
-        private void OnBtnListaClicked(object sender, EventArgs e) {
+        private async void OnBtnListaClicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Listado());
         }
 
 
@@ -144,10 +146,6 @@ namespace PM2E307 {
             btnBtnStartRecording.BackgroundColor = color;
             btnBtnStartRecording.ImageSource = new FileImageSource().File = ico;
         }
-
-
-
-
 
         public void OnBtnLimpiarClicked(object sender, EventArgs e) {
             LimpiarCampos();

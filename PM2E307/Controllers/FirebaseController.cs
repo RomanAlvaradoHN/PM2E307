@@ -23,15 +23,15 @@ namespace PM2E307.Controllers {
 
 
 
-        public async Task<int> NewId<T>(T table) {
-            List<T> lista = new List<T>();
-            var dataList = await client.Child(typeof(T).Name).OnceAsync<T>();
+        public async Task<int> NewId() {
+            List<Notas> lista = new List<Notas>();
+            var dataList = await client.Child("Notas").OnceAsync<Notas>();
             foreach (var dl in dataList) {
                 lista.Add(dl.Object);
             }
 
             if(lista.Count == 0) {
-                deleteBugRecord = (await client.Child(typeof(T).Name).PostAsync(table)).Key;
+                deleteBugRecord = (await client.Child("Notas").PostAsync(new Notas())).Key;
                 return 2;
             }
 
@@ -41,27 +41,22 @@ namespace PM2E307.Controllers {
 
 
         //CREATE =====================================================================
-        public async Task Insert<T>(T model) {
-            string newId = (await NewId(model)).ToString();
-            await client.Child(typeof(T).Name).Child(newId).PutAsync(model);
-
-            /*
-            if (!string.IsNullOrEmpty(deleteBugRecord)) {
-                await client.Child(typeof(T).Name).Child(deleteBugRecord).DeleteAsync();
-                deleteBugRecord = string.Empty;
-            }
-            */
+        public async Task Insert(Notas nota) {
+            string newId = (await NewId()).ToString();
+            await client.Child("Notas").Child(newId).PutAsync(nota);
         }
 
 
 
 
         //READ ALL =================================================================
-        public async Task<List<T>> SelectAllFrom<T>(T table) {
-            List<T> lista = new List<T>();
-            var dataList = await client.Child(typeof(T).Name).OnceAsync<T>();
+        public async Task<List<Notas>> SelectAll() {
+            List<Notas> lista = new List<Notas>();
+            var dataList = await client.Child("Notas").OnceAsync<Notas>();
             foreach (var dl in dataList){
-                lista.Add(dl.Object);
+                if(int.TryParse(dl.Key, out int result)) {
+                    lista.Add(dl.Object);
+                }
             }
             return lista;
         }
@@ -69,16 +64,16 @@ namespace PM2E307.Controllers {
 
 
         //READ BY ID =================================================================
-        public async Task<T> SelectById<T>(int id, T table) {
-            return await client.Child(typeof(T).Name).Child(id.ToString()).OnceSingleAsync<T>();
+        public async Task<Notas> SelectById(int id) {
+            return await client.Child("Notas").Child(id.ToString()).OnceSingleAsync<Notas>();
         }
 
 
 
 
         //UPDATE =====================================================================
-        public async void Update<T>(int id, T data) {
-            await client.Child(typeof(T).Name).Child(id.ToString()).PutAsync(data);
+        public async void Update<Notas>(int id, Notas nota) {
+            await client.Child("Notas").Child(id.ToString()).PutAsync(nota);
         }
 
 
