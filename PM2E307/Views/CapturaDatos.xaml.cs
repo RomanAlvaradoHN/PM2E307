@@ -86,13 +86,11 @@ public partial class CapturaDatos : ContentPage
                 SetAudioButtonStyle("stop_ico.png", Colors.Red);
 
             } else {
-                if (App.nota != null) {
-                    var audio = await audioRecorder.StopAsync();
-                    using (MemoryStream ms = new MemoryStream()) {
-                        Stream st = audio.GetAudioStream();
-                        await st.CopyToAsync(ms);
-                        audioArray = ms.ToArray();
-                    }
+                var audio = await audioRecorder.StopAsync();
+                using (MemoryStream ms = new MemoryStream()) {
+                    Stream st = audio.GetAudioStream();
+                    await st.CopyToAsync(ms);
+                    audioArray = ms.ToArray();
                 }
 
                 SetAudioButtonStyle("done_ico.png", Colors.Cyan);
